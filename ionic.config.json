@@ -1,0 +1,7 @@
+{
+  "name": "gege-mobile",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
