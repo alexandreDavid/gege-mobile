@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { IonicVueRouter } from '@ionic/vue'
-import Home from '../views/Home.vue'
+import Home from '../views/VetHome.vue'
 import Login from '../views/Login.vue'
 import ForgottenPassword from '../views/ForgottenPassword.vue'
 
@@ -10,7 +10,26 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    redirect: '/search',
+    children: [
+      {
+        path: '/search',
+        name: 'Search'
+      },
+      {
+        path: '/new',
+        name: 'New'
+      },
+      {
+        path: '/actions',
+        name: 'Actions'
+      },
+      {
+        path: '/schedule',
+        name: 'Schedule'
+      }
+    ]
   },
   {
     path: '/login',
