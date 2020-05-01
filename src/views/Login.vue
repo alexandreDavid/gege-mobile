@@ -31,6 +31,9 @@ export default {
       password: ''
     }
   },
+  created () {
+    this.setAuthToken('')
+  },
   methods: {
     ...mapActions([
       'setAuthToken'
