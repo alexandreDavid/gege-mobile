@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    authToken: ''
+    authToken: localStorage.getItem('token')
   },
   mutations: {
     setAuthToken (state, token) {
@@ -14,13 +14,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    isAuthenticated: (state, commit) => {
-      if (!state.authToken) {
-        const storedToken = localStorage.getItem('token')
-        if (storedToken) {
-          commit('setAuthToken', storedToken)
-        }
-      }
+    isAuthenticated: state => {
       return !!state.authToken
     }
   },
