@@ -3,8 +3,9 @@ import { IonicVueRouter } from '@ionic/vue'
 import Home from '../views/VetHome.vue'
 import Login from '../views/Login.vue'
 import ForgottenPassword from '../views/ForgottenPassword.vue'
+import About from '../views/About.vue'
 
-Vue.use(IonicVueRouter);
+Vue.use(IonicVueRouter)
 
 const routes = [
   {
@@ -44,10 +45,7 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About
   }
 ]
 
