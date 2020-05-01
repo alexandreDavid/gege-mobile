@@ -11,8 +11,10 @@
               </ion-buttons>
               <ion-title>Rechercher un individu</ion-title>
             </ion-toolbar>
+            <ion-toolbar color="primary">
+              <ion-searchbar></ion-searchbar>
+            </ion-toolbar>
           </ion-header>
-
           <Search />
         </ion-tab>
 
@@ -67,11 +69,11 @@
             <ion-icon name="search"></ion-icon>
           </ion-tab-button>
           <ion-tab-button tab="new">
-            <ion-label>Nouvelle ficher</ion-label>
+            <ion-label>Nouvelle fiche</ion-label>
             <ion-icon name="add"></ion-icon>
           </ion-tab-button>
           <ion-tab-button tab="actions">
-            <ion-label>Actions effectuées</ion-label>
+            <ion-label>Actions</ion-label>
             <ion-icon name="construct"></ion-icon>
           </ion-tab-button>
           <ion-tab-button tab="schedule">
