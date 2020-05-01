@@ -27,7 +27,7 @@
           <ion-icon name="trash" slot="start"></ion-icon>
           <ion-label>Trash</ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item button @click="$router.push('/login')">
           <ion-icon name="log-out" slot="start" color="danger"></ion-icon>
           <ion-label color="danger">Se deconnecter</ion-label>
         </ion-item>

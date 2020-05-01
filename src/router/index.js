@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import { IonicVueRouter } from '@ionic/vue'
+import store from '@/store'
+
 import Home from '../views/VetHome.vue'
 import Login from '../views/Login.vue'
 import ForgottenPassword from '../views/ForgottenPassword.vue'
@@ -74,6 +76,14 @@ const router = new IonicVueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.name !== 'Login' && !store.getters.isAuthenticated) {
+    next({ name: 'Login' })
+  } else {
+    next()
+  }
 })
 
 export default router

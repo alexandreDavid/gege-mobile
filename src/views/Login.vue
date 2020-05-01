@@ -3,15 +3,15 @@
     <ion-content class="ion-padding">
       <h1>Bienvenu sur Gege</h1>
       <ion-item margin-top>
-        <ion-label position="floating">Identifiant</ion-label>
-        <ion-input></ion-input>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input @ionInput="email = $event.target.value" type="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Mot de passe</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input @ionInput="password = $event.target.value" type="password"></ion-input>
       </ion-item>
       <div margin-top>
-        <ion-button expand="full" color="primary" @click="$router.push('/')">Se connecter</ion-button>
+        <ion-button expand="full" color="primary" @click="login" :disabled="!email || !password">Se connecter</ion-button>
       </div>
       <div margin-top>
         <router-link to="/forgotten-password">Mot de passe oublier ?</router-link>
@@ -21,7 +21,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'login'
+  name: 'login',
+  data () {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    ...mapActions([
+      'setAuthToken'
+    ]),
+    login (email, password) {
+      this.setAuthToken(`OK: ${email}`)
+      this.$router.push('/')
+    }
+  }
 }
 </script>
