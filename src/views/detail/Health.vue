@@ -1,0 +1,54 @@
+<template>
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <ion-label>
+          <h3>Poids</h3>
+          <p>23Kg</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Taille</h3>
+          <p>73cm</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Maladies chroniques</h3>
+          <p>Non</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Traitement curatif</h3>
+          <p>Non</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Traitement préventif</h3>
+          <p>Non</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Mode de contraception</h3>
+          <p>Non</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Prophylaxie</h3>
+          <p>Non</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h3>Anesthésie</h3>
+          <p>Non</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</template>

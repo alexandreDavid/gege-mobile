@@ -7,7 +7,7 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item @click="$router.push('/about')">
+        <ion-item button @click="$router.push('/about')">
           <ion-icon name="information-circle-outline" slot="start"></ion-icon>
           <ion-label>A propos</ion-label>
         </ion-item>

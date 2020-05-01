@@ -77,6 +77,7 @@
           <ion-tab-button tab="schedule">
             <ion-label>Agenda</ion-label>
             <ion-icon name="calendar"></ion-icon>
+            <ion-badge>6</ion-badge>
           </ion-tab-button>
         </ion-tab-bar>
       </ion-tabs>

@@ -4,6 +4,7 @@ import Home from '../views/VetHome.vue'
 import Login from '../views/Login.vue'
 import ForgottenPassword from '../views/ForgottenPassword.vue'
 import About from '../views/About.vue'
+import Detail from '../views/detail'
 
 Vue.use(IonicVueRouter)
 
@@ -29,6 +30,26 @@ const routes = [
       {
         path: '/schedule',
         name: 'Schedule'
+      }
+    ]
+  },
+  {
+    path: '/detail',
+    name: 'Detail',
+    component: Detail,
+    // redirect: '/detail/informations',
+    children: [
+      {
+        path: '/detail/informations',
+        name: 'detail-informations'
+      },
+      {
+        path: '/detail/health',
+        name: 'detail-health'
+      },
+      {
+        path: '/detail/observations',
+        name: 'detail-observations'
       }
     ]
   },
