@@ -6,6 +6,11 @@
           <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>Fiche de Kiki</ion-title>
+        <ion-buttons slot="end">
+          <ion-button @click="presentActionSheet">
+            <ion-icon slot="icon-only" name="more"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-toolbar>
       <ion-segment @ionChange="segmentChanged($event)" :value="currentDisplay">
         <ion-segment-button value="informations">
@@ -42,6 +47,62 @@ export default {
   methods: {
     segmentChanged (event) {
       this.currentDisplay = event.detail.value
+    },
+    presentActionSheet () {
+      return this.$ionic.actionSheetController
+        .create({
+          header: 'Actions',
+          buttons: [
+            {
+              text: 'Supprimer',
+              role: 'destructive',
+              handler: () => {
+                this.presentConfirmDelete()
+              }
+            },
+            {
+              text: 'Editer',
+              handler: () => {
+                console.log('Share clicked')
+              }
+            },
+            {
+              text: 'Dupliquer',
+              handler: () => {
+                console.log('Favorite clicked')
+              }
+            },
+            {
+              text: 'Annuler',
+              role: 'cancel',
+              handler: () => {
+                console.log('Cancel clicked')
+              }
+            }
+          ]
+        })
+        .then(a => a.present())
+    },
+    presentConfirmDelete () {
+      return this.$ionic.alertController
+        .create({
+          header: 'Confirmer la suppression',
+          message: 'Voulez-vous vraiment supprimer cette fiche ?',
+          buttons: [
+            {
+              text: 'Annuler',
+              role: 'cancel'
+            },
+            {
+              text: 'Supprimer',
+              role: 'destructive',
+              handler: () => {
+                this.$router.replace('/')
+              }
+            }
+          ]
+        })
+        .then(a => a.present())
     }
   }
 }

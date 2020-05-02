@@ -1,5 +1,5 @@
 import { addIcons } from 'ionicons'
-import { construct, search, add, calendar, informationCircleOutline, logOut } from 'ionicons/icons'
+import { construct, search, add, calendar, informationCircleOutline, logOut, more } from 'ionicons/icons'
 
 addIcons({
   'ios-construct': construct.ios,
@@ -13,5 +13,7 @@ addIcons({
   'ios-information-circle-outline': informationCircleOutline.md,
   'md-information-circle-outline': informationCircleOutline.md,
   'ios-log-out': logOut.md,
-  'md-log-out': logOut.md
+  'md-log-out': logOut.md,
+  'ios-more': more.md,
+  'md-more': more.md
 })

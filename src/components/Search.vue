@@ -1,6 +1,6 @@
 <template>
     <ion-content>
-      <ion-toolbar color="primary">
+      <ion-toolbar>
         <ion-searchbar @ionInput="search = $event.target.value"></ion-searchbar>
       </ion-toolbar>
       <ion-list>
