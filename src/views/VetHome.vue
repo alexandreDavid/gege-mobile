@@ -2,7 +2,7 @@
   <div>
     <Menu />
     <div class="ion-page" id="main-content">
-      <ion-tabs id="main-content">
+      <ion-tabs>
         <ion-tab tab="search">
           <ion-header translucent>
             <ion-toolbar color="primary">
@@ -10,9 +10,6 @@
                 <ion-menu-button></ion-menu-button>
               </ion-buttons>
               <ion-title>Rechercher un individu</ion-title>
-            </ion-toolbar>
-            <ion-toolbar color="primary">
-              <ion-searchbar></ion-searchbar>
             </ion-toolbar>
           </ion-header>
           <Search />
