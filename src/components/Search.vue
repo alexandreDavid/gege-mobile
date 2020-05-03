@@ -1,21 +1,21 @@
 <template>
-    <ion-content>
-      <ion-toolbar>
-        <ion-searchbar @ionInput="search = $event.target.value"></ion-searchbar>
-      </ion-toolbar>
-      <ion-list>
-        <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.push('/detail')">
-          <ion-thumbnail slot="start">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Macaca_nigra_self-portrait_large.jpg/200px-Macaca_nigra_self-portrait_large.jpg">
-          </ion-thumbnail>
-          <ion-label>
-            <h3>{{ entity.name }}</h3>
-            <p>{{ entity.type }}</p>
-            <p>{{ entity.age > 1 ? `${entity.age} ans` : '1 an' }}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
-    </ion-content>
+  <ion-content>
+    <ion-toolbar>
+      <ion-searchbar @ionInput="search = $event.target.value"></ion-searchbar>
+    </ion-toolbar>
+    <ion-list>
+      <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.push('/details')">
+        <ion-thumbnail slot="start">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Macaca_nigra_self-portrait_large.jpg/200px-Macaca_nigra_self-portrait_large.jpg">
+        </ion-thumbnail>
+        <ion-label>
+          <h3>{{ entity.name }}</h3>
+          <p>{{ entity.type }}</p>
+          <p>{{ entity.age > 1 ? `${entity.age} ans` : '1 an' }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </template>
 
 <script>

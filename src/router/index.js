@@ -2,72 +2,72 @@ import Vue from 'vue'
 import { IonicVueRouter } from '@ionic/vue'
 import store from '@/store'
 
-import Home from '../views/VetHome.vue'
-import Login from '../views/Login.vue'
-import ForgottenPassword from '../views/ForgottenPassword.vue'
-import About from '../views/About.vue'
-import Detail from '../views/detail'
+import Home from '../views/Home'
+import Login from '../views/Login'
+import ForgottenPassword from '../views/ForgottenPassword'
+import About from '../views/About'
+import Details from '../views/Details'
 
 Vue.use(IonicVueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home,
     redirect: '/search',
     children: [
       {
         path: '/search',
-        name: 'Search'
+        name: 'search'
       },
       {
         path: '/new',
-        name: 'New'
+        name: 'new'
       },
       {
         path: '/actions',
-        name: 'Actions'
+        name: 'actions'
       },
       {
-        path: '/schedule',
-        name: 'Schedule'
+        path: '/calendar',
+        name: 'calendar'
       }
     ]
   },
   {
-    path: '/detail',
-    name: 'Detail',
-    component: Detail,
+    path: '/details',
+    name: 'details',
+    component: Details,
     // redirect: '/detail/informations',
     children: [
       {
-        path: '/detail/informations',
-        name: 'detail-informations'
+        path: '/details/informations',
+        name: 'details-informations'
       },
       {
-        path: '/detail/health',
-        name: 'detail-health'
+        path: '/details/health',
+        name: 'details-health'
       },
       {
-        path: '/detail/observations',
-        name: 'detail-observations'
+        path: '/details/observations',
+        name: 'details-observations'
       }
     ]
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: Login
   },
   {
     path: '/forgotten-password',
-    name: 'ForgottenPassword',
+    name: 'forgotten-password',
     component: ForgottenPassword
   },
   {
     path: '/about',
-    name: 'About',
+    name: 'about',
     component: About
   }
 ]
@@ -79,8 +79,8 @@ const router = new IonicVueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.name !== 'Login' && !store.getters.isAuthenticated) {
-    next({ name: 'Login' })
+  if (to.name !== 'login' && !store.getters.isAuthenticated) {
+    next({ name: 'login' })
   } else {
     next()
   }

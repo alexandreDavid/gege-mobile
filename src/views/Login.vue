@@ -36,10 +36,12 @@ export default {
   },
   methods: {
     ...mapActions([
-      'setAuthToken'
+      'setAuthToken',
+      'setAuthProfile'
     ]),
     login (email, password) {
       this.setAuthToken(`OK: ${email}`)
+      this.setAuthProfile(email === 'veto' ? email : 'soigneur')
       this.$router.push('/')
     }
   }
