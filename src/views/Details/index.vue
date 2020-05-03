@@ -19,15 +19,15 @@
         <ion-segment-button value="health">
           <ion-label>Santé</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="observations">
-          <ion-label>Observations</ion-label>
+        <ion-segment-button value="healther-doc">
+          <ion-label>Fiche soigneur</ion-label>
         </ion-segment-button>
       </ion-segment>
     </ion-header>
     <ion-content>
       <Informations v-show="currentDisplay === 'informations'" />
       <Health v-show="currentDisplay === 'health'" />
-      <Observations v-show="currentDisplay === 'observations'" />
+      <HealtherDoc v-show="currentDisplay === 'healther-doc'" />
     </ion-content>
   </div>
 </template>
@@ -35,10 +35,10 @@
 <script>
 import Informations from './Informations'
 import Health from './Health'
-import Observations from './Observations'
+import HealtherDoc from './HealtherDoc'
 
 export default {
-  components: { Informations, Health, Observations },
+  components: { Informations, Health, HealtherDoc },
   data () {
     return {
       currentDisplay: 'informations'
