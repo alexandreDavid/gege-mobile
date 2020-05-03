@@ -30,12 +30,14 @@
 import { mapGetters } from 'vuex'
 import Menu from '@/components/Menu'
 import Search from '@/components/Search'
+import Calendar from '@/components/Calendar'
 
 export default {
   name: 'Home',
   components: {
     Menu,
-    Search
+    Search,
+    Calendar
   },
   computed: {
     ...mapGetters([
@@ -74,7 +76,7 @@ export default {
           icon: 'calendar',
           notifications: 6,
           title: 'Agenda',
-          component: Search
+          component: Calendar
         },
         {
           id: 'actions',
