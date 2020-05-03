@@ -4,7 +4,6 @@
       <ion-card-header>
         <ion-card-title>Aujourd'hui</ion-card-title>
       </ion-card-header>
-
       <ion-card-content>
         <ion-list>
             <ion-item>
@@ -17,6 +16,23 @@
             </ion-item>
             <ion-item>
               <ion-label>Anniversaire de Grey (girafe)</ion-label>
+              <ion-checkbox slot="start"></ion-checkbox>
+            </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Demain</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+            <ion-item>
+              <ion-label>Puçage des loups</ion-label>
+              <ion-checkbox slot="start"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+              <ion-label>Déplacement de Teddy (ours)</ion-label>
               <ion-checkbox slot="start"></ion-checkbox>
             </ion-item>
         </ion-list>
