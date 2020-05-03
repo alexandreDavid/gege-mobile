@@ -1,7 +1,7 @@
 <template>
   <ion-content>
     <ion-toolbar>
-      <ion-searchbar @ionInput="search = $event.target.value"></ion-searchbar>
+      <ion-searchbar @ionInput="search = $event.target.value" placeholder="Rechercher"></ion-searchbar>
     </ion-toolbar>
     <ion-list>
       <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.push('/details')">
