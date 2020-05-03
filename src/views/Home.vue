@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Menu from '@/components/Menu'
 import Search from '@/components/Search'
 
@@ -35,6 +36,11 @@ export default {
   components: {
     Menu,
     Search
+  },
+  computed: {
+    ...mapGetters([
+      'isVeto'
+    ])
   },
   data () {
     return {
@@ -51,14 +57,16 @@ export default {
           name: 'Nouvelle fiche',
           icon: 'add',
           title: 'Créer une nouvelle fiche',
-          component: Search
+          component: Search,
+          condition: 'veto'
         },
         {
-          id: 'actions',
-          name: 'Actions',
-          icon: 'construct',
-          title: 'Actions effectuées',
-          component: Search
+          id: 'new',
+          name: 'Nouvelle fiche ration',
+          icon: 'add',
+          title: 'Créer une nouvelle fiche ration',
+          component: Search,
+          condition: 'soigneur'
         },
         {
           id: 'calendar',
@@ -67,9 +75,30 @@ export default {
           notifications: 6,
           title: 'Agenda',
           component: Search
+        },
+        {
+          id: 'actions',
+          name: 'Actions',
+          icon: 'construct',
+          title: 'Actions effectuées',
+          component: Search,
+          condition: 'veto'
+        },
+        {
+          id: 'dashboard',
+          name: 'Tableau de bord',
+          icon: 'construct',
+          title: 'Tableau de bord',
+          component: Search,
+          condition: 'soigneur'
         }
       ]
     }
+  },
+  created () {
+    this.tabs = this.tabs.filter(tab => {
+      return !tab.condition || (tab.condition === 'veto' && this.isVeto) || (tab.condition !== 'veto' && !this.isVeto)
+    })
   }
 }
 </script>

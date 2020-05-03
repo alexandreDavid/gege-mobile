@@ -32,6 +32,10 @@ const routes = [
       {
         path: '/calendar',
         name: 'calendar'
+      },
+      {
+        path: '/dashboard',
+        name: 'dashboard'
       }
     ]
   },

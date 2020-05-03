@@ -11,7 +11,7 @@
         <ion-input @ionInput="password = $event.target.value" type="password"></ion-input>
       </ion-item>
       <div margin-top>
-        <ion-button expand="full" color="primary" @click="login" :disabled="!email || !password">Se connecter</ion-button>
+        <ion-button expand="full" color="primary" @click="login(email, password)" :disabled="!email || !password">Se connecter</ion-button>
       </div>
       <div margin-top>
         <router-link to="/forgotten-password">Mot de passe oublier ?</router-link>
