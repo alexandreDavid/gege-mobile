@@ -12,6 +12,7 @@
   "dependencies": {
     "@capacitor/android": "^2.0.2",
     "@capacitor/core": "2.0.2",
+    "@ionic/pwa-elements": "^1.5.2",
     "@ionic/vue": "0.0.9",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
