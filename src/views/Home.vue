@@ -34,6 +34,7 @@ import CreateDetail from '@/components/CreateDetail'
 import Ration from '@/components/Ration'
 import Calendar from '@/components/Calendar'
 import Actions from '@/components/Actions'
+import Dashboard from '@/components/Dashboard'
 
 export default {
   name: 'Home',
@@ -92,7 +93,7 @@ export default {
           name: 'Tableau de bord',
           icon: 'construct',
           title: 'Tableau de bord',
-          component: Search,
+          component: Dashboard,
           condition: 'soigneur'
         }
       ]
