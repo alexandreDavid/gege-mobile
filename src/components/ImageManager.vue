@@ -40,7 +40,6 @@ export default {
         try {
           const image = await Camera.getPhoto({
             quality: 90,
-            allowEditing: true,
             resultType: CameraResultType.DataUrl,
             source: CameraSource.Prompt
           })

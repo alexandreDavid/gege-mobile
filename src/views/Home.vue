@@ -67,7 +67,7 @@ export default {
         },
         {
           id: 'new',
-          name: 'Nouvelle fiche ration',
+          name: 'Fiche ration',
           icon: 'add',
           title: 'Créer une nouvelle fiche ration',
           component: Search,

@@ -16,6 +16,11 @@
         <ion-input v-else @ionInput="form[field.prop] = $event.target.value"></ion-input>
       </ion-item>
     </ion-list>
+     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="save"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-content>
 </template>
 
