@@ -31,16 +31,14 @@ import { mapGetters } from 'vuex'
 import Menu from '@/components/Menu'
 import Search from '@/components/Search'
 import CreateDetail from '@/components/CreateDetail'
+import Ration from '@/components/Ration'
 import Calendar from '@/components/Calendar'
 import Actions from '@/components/Actions'
 
 export default {
   name: 'Home',
   components: {
-    Menu,
-    Search,
-    Calendar,
-    CreateDetail
+    Menu
   },
   computed: {
     ...mapGetters([
@@ -70,7 +68,7 @@ export default {
           name: 'Fiche ration',
           icon: 'add',
           title: 'Créer une nouvelle fiche ration',
-          component: Search,
+          component: Ration,
           condition: 'soigneur'
         },
         {
