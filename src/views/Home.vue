@@ -31,6 +31,7 @@ import { mapGetters } from 'vuex'
 import Menu from '@/components/Menu'
 import Search from '@/components/Search'
 import Calendar from '@/components/Calendar'
+import Actions from '@/components/Actions'
 
 export default {
   name: 'Home',
@@ -83,7 +84,7 @@ export default {
           name: 'Actions',
           icon: 'construct',
           title: 'Actions effectuées',
-          component: Search,
+          component: Actions,
           condition: 'veto'
         },
         {
