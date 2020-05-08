@@ -6,19 +6,19 @@
       </ion-item>
       <ion-item v-for="(field, key) in fields" :key="key">
         <ion-label position="floating">{{ field.label }}</ion-label>
-        <ion-datetime v-if="field.type ==='date'" @ionInput="form[field.prop] = $event.target.value"></ion-datetime>
-        <ion-textarea v-else-if="field.type ==='textarea'" @ionInput="form[field.prop] = $event.target.value" auto-grow></ion-textarea>
-        <ion-select v-else-if="field.type ==='select'" @ionInput="form[field.prop] = $event.target.value">
+        <ion-datetime v-if="field.type ==='date'" @ionChange="form[field.prop] = $event.target.value" :value="form[field.prop]"></ion-datetime>
+        <ion-textarea v-else-if="field.type ==='textarea'" @ionInput="form[field.prop] = $event.target.value" :value="form[field.prop]" auto-grow></ion-textarea>
+        <ion-select v-else-if="field.type ==='select'" @ionChange="form[field.prop] = $event.target.value" :value="form[field.prop]">
           <ion-select-option v-for="option in field.selectOptions" :key="option.value" :value="option.value">
             {{ option.label }}
           </ion-select-option>
         </ion-select>
-        <ion-input v-else @ionInput="form[field.prop] = $event.target.value"></ion-input>
+        <ion-input v-else @ionInput="form[field.prop] = $event.target.value" :value="form[field.prop]"></ion-input>
       </ion-item>
     </ion-list>
      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button>
-        <ion-icon name="save" @click="save(form)"></ion-icon>
+        <ion-icon name="save" @click="$emit('save', form)"></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </ion-content>
@@ -26,18 +26,23 @@
 
 <script>
 import ImageManager from '@/components/ImageManager'
-import { db } from '@/plugins/firebase'
 
 export default {
   components: { ImageManager },
+  props: {
+    details: {
+      type: Object,
+      default: function () {
+        return {}
+      }
+    }
+  },
   data () {
     return {
-      form: {
-      },
       fields: [
         {
           label: 'Identification',
-          prop: 'id'
+          prop: 'identification'
         },
         {
           label: 'Nom de l\'animal',
@@ -79,11 +84,9 @@ export default {
       ]
     }
   },
-  methods: {
-    save (form) {
-      db.collection('animals').add(form).then(() => {
-        this.$router.push('/details')
-      })
+  computed: {
+    form () {
+      return this.details
     }
   }
 }

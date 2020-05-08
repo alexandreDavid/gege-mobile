@@ -4,7 +4,7 @@
       <ion-searchbar @ionInput="search = $event.target.value" placeholder="Rechercher"></ion-searchbar>
     </ion-toolbar>
     <ion-list v-if="!loading">
-      <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.push('/details')">
+      <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.replace({ name: 'details', params: { id: entity.id } })">
         <ion-thumbnail slot="start">
           <img :src="entity.imageUrl">
         </ion-thumbnail>
@@ -55,48 +55,10 @@ export default {
     }
   },
   mounted () {
-    this.list = [
-      {
-        name: 'Kiki',
-        type: 'Macaque',
-        age: 1
-      },
-      {
-        name: 'Lulu',
-        type: 'Macaque',
-        age: 3
-      },
-      {
-        name: 'Jean-Paul',
-        type: 'Macaque',
-        age: 3
-      },
-      {
-        name: 'Roro',
-        type: 'Macaque',
-        age: 12
-      },
-      {
-        name: 'Steven',
-        type: 'Macaque',
-        age: 9
-      },
-      {
-        name: 'Pierre-Emmanuel',
-        type: 'Macaque',
-        age: 8
-      },
-      {
-        name: 'Zorba the Grec',
-        type: 'Macaque',
-        age: 4
-      }
-    ]
     db.collection('animals').get().then((querySnapshot) => {
       this.list = []
-      console.log(querySnapshot)
       querySnapshot.forEach((doc) => {
-        this.list.push(doc.data())
+        this.list.push({ ...doc.data(), id: doc.id })
       })
       this.loading = false
     })

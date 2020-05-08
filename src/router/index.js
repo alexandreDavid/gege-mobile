@@ -40,22 +40,26 @@ const routes = [
     ]
   },
   {
-    path: '/details',
+    path: '/:id',
     name: 'details',
     component: Details,
-    // redirect: '/detail/informations',
+    props: true,
     children: [
       {
-        path: '/details/informations',
+        path: '/:id/informations',
         name: 'details-informations'
       },
       {
-        path: '/details/health',
+        path: '/:id/health',
         name: 'details-health'
       },
       {
-        path: '/details/observations',
+        path: '/:id/observations',
         name: 'details-observations'
+      },
+      {
+        path: '/:id/edit',
+        name: 'details-edit'
       }
     ]
   },

@@ -3,7 +3,7 @@
     <ion-header>
       <ion-toolbar color="primary">
         <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
+          <ion-back-button default-href="home"></ion-back-button>
         </ion-buttons>
         <ion-title>Fiche de Kiki</ion-title>
         <ion-buttons slot="end">
@@ -24,27 +24,48 @@
         </ion-segment-button>
       </ion-segment>
     </ion-header>
-    <ion-content>
-      <Informations v-show="currentDisplay === 'informations'" />
+    <ion-content v-if="!loading">
+      <Informations v-show="currentDisplay === 'informations' && !edit" :details="details" />
       <Health v-show="currentDisplay === 'health'" />
       <HealtherDoc v-show="currentDisplay === 'healther-doc'" />
+      <EditDetails v-show="currentDisplay === 'informations' && edit" :details="details" @save="save" />
     </ion-content>
   </div>
 </template>
 
 <script>
+import { db } from '@/plugins/firebase'
+
 import Informations from './Informations'
 import Health from './Health'
 import HealtherDoc from './HealtherDoc'
+import EditDetails from '@/components/EditDetails'
 
 export default {
-  components: { Informations, Health, HealtherDoc },
-  data () {
-    return {
-      currentDisplay: 'informations'
+  components: { Informations, Health, HealtherDoc, EditDetails },
+  props: {
+    id: {
+      type: String,
+      required: true
     }
   },
+  data () {
+    return {
+      currentDisplay: 'informations',
+      details: {},
+      edit: false,
+      loading: true
+    }
+  },
+  async created () {
+    await this.getDetails()
+    this.loading = false
+  },
   methods: {
+    async getDetails () {
+      const snapshot = await db.collection('animals').doc(this.id).get()
+      this.details = snapshot.data()
+    },
     segmentChanged (event) {
       this.currentDisplay = event.detail.value
     },
@@ -63,7 +84,7 @@ export default {
             {
               text: 'Editer',
               handler: () => {
-                console.log('Share clicked')
+                this.edit = true
               }
             },
             {
@@ -103,6 +124,13 @@ export default {
           ]
         })
         .then(a => a.present())
+    },
+    async save (form) {
+      this.loading = true
+      await db.collection('animals').doc(this.id).update(form)
+      this.edit = false
+      await this.getDetails()
+      this.loading = false
     }
   }
 }
