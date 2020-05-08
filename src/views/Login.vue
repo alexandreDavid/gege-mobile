@@ -45,7 +45,7 @@ export default {
         const result = await auth.signInWithEmailAndPassword(email, password)
         console.log(result)
         this.setAuthToken(`OK: ${email}`)
-        this.setAuthProfile(email === 'veto' ? email : 'soigneur')
+        this.setAuthProfile(email === 'soignant' ? email : 'veto')
         this.$router.push('/')
       } catch (error) {
         // var errorCode = error.code

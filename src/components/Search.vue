@@ -6,7 +6,7 @@
     <ion-list v-if="!loading">
       <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.push('/details')">
         <ion-thumbnail slot="start">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Macaca_nigra_self-portrait_large.jpg/200px-Macaca_nigra_self-portrait_large.jpg">
+          <img :src="entity.imageUrl">
         </ion-thumbnail>
         <ion-label>
           <h3>{{ entity.name }}</h3>

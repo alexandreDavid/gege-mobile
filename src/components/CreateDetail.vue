@@ -18,7 +18,7 @@
     </ion-list>
      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button>
-        <ion-icon name="save"></ion-icon>
+        <ion-icon name="save" @click="save(form)"></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </ion-content>
@@ -26,6 +26,7 @@
 
 <script>
 import ImageManager from '@/components/ImageManager'
+import { db } from '@/plugins/firebase'
 
 export default {
   components: { ImageManager },
@@ -76,6 +77,13 @@ export default {
           type: 'textarea'
         }
       ]
+    }
+  },
+  methods: {
+    save (form) {
+      db.collection('animals').add(form).then(() => {
+        this.$router.push('/details')
+      })
     }
   }
 }
