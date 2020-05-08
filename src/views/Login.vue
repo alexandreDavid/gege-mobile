@@ -22,6 +22,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { auth } from '@/plugins/firebase'
 
 export default {
   name: 'login',
@@ -39,10 +40,20 @@ export default {
       'setAuthToken',
       'setAuthProfile'
     ]),
-    login (email, password) {
-      this.setAuthToken(`OK: ${email}`)
-      this.setAuthProfile(email === 'veto' ? email : 'soigneur')
-      this.$router.push('/')
+    async login (email, password) {
+      try {
+        const result = await auth.signInWithEmailAndPassword(email, password)
+        console.log(result)
+        this.setAuthToken(`OK: ${email}`)
+        this.setAuthProfile(email === 'veto' ? email : 'soigneur')
+        this.$router.push('/')
+      } catch (error) {
+        // var errorCode = error.code
+        // var errorMessage = error.message
+      }
+      // this.setAuthToken(`OK: ${email}`)
+      // this.setAuthProfile(email === 'veto' ? email : 'soigneur')
+      // this.$router.push('/')
     }
   }
 }
