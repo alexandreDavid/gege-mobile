@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     form () {
-      return this.details
+      return { ...this.details }
     }
   }
 }

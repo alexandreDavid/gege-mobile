@@ -30,7 +30,7 @@
 import { mapGetters } from 'vuex'
 import Menu from '@/components/Menu'
 import Search from '@/components/Search'
-import EditDetails from '@/components/EditDetails'
+import CreateDetails from './CreateDetails'
 import Ration from '@/components/Ration'
 import Calendar from '@/components/Calendar'
 import Actions from '@/components/Actions'
@@ -61,7 +61,7 @@ export default {
           name: 'Nouvelle fiche',
           icon: 'add',
           title: 'Créer une nouvelle fiche',
-          component: EditDetails,
+          component: CreateDetails,
           condition: 'veto'
         },
         {

@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
           <ion-back-button default-href="home"></ion-back-button>
         </ion-buttons>
-        <ion-title>Fiche de Kiki</ion-title>
+        <ion-title>Fiche de {{ details.name }}</ion-title>
         <ion-buttons slot="end">
           <ion-button @click="presentActionSheet">
             <ion-icon slot="icon-only" name="more"></ion-icon>
