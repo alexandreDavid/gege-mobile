@@ -90,15 +90,12 @@ export default {
             {
               text: 'Dupliquer',
               handler: () => {
-                console.log('Favorite clicked')
+                this.duplicate()
               }
             },
             {
               text: 'Annuler',
-              role: 'cancel',
-              handler: () => {
-                console.log('Cancel clicked')
-              }
+              role: 'cancel'
             }
           ]
         })
@@ -137,6 +134,12 @@ export default {
       await db.collection('animals').doc(this.id).delete()
       this.loading = false
       this.$router.replace('/')
+    },
+    async duplicate () {
+      this.loading = true
+      const snapshot = await db.collection('animals').add(this.details)
+      this.$router.replace({ name: 'details', params: { id: snapshot.id } })
+      this.loading = false
     }
   }
 }

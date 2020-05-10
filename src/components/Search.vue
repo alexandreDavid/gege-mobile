@@ -4,7 +4,7 @@
       <ion-searchbar @ionInput="search = $event.target.value" placeholder="Rechercher"></ion-searchbar>
     </ion-toolbar>
     <ion-list v-if="!loading">
-      <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.replace({ name: 'details', params: { id: entity.id } })">
+      <ion-item v-for="(entity, key) in filteredList" :key="key" button @click="$router.push({ name: 'details', params: { id: entity.id } })">
         <ion-thumbnail slot="start">
           <img :src="entity.imageUrl">
         </ion-thumbnail>
