@@ -118,7 +118,7 @@ export default {
               text: 'Supprimer',
               role: 'destructive',
               handler: () => {
-                this.$router.replace('/')
+                this.delete()
               }
             }
           ]
@@ -131,6 +131,12 @@ export default {
       this.edit = false
       await this.getDetails()
       this.loading = false
+    },
+    async delete () {
+      this.loading = true
+      await db.collection('animals').doc(this.id).delete()
+      this.loading = false
+      this.$router.replace('/')
     }
   }
 }

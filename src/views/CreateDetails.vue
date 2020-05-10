@@ -18,7 +18,7 @@ export default {
   methods: {
     async onSave (form) {
       const doc = await db.collection('animals').add(form)
-      this.$router.push({ name: 'details', params: { id: doc.id } })
+      this.$router.replace({ name: 'details', params: { id: doc.id } })
     }
   }
 }
