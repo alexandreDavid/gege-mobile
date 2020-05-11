@@ -6,16 +6,21 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     authToken: localStorage.getItem('token'),
-    authProfile: localStorage.getItem('profile')
+    authRole: localStorage.getItem('role'),
+    authGroup: +localStorage.getItem('group')
   },
   mutations: {
     setAuthToken (state, token) {
       localStorage.setItem('token', token)
       state.authToken = token
     },
-    setAuthProfile (state, profile) {
-      localStorage.setItem('profile', profile)
-      state.authProfile = profile
+    setAuthRole (state, role) {
+      localStorage.setItem('role', role)
+      state.authRole = role
+    },
+    setAuthGroup (state, group) {
+      localStorage.setItem('group', group)
+      state.authGroup = group
     }
   },
   getters: {
@@ -23,15 +28,18 @@ export default new Vuex.Store({
       return !!state.authToken
     },
     isVeto: state => {
-      return state.authProfile === 'veto'
+      return state.authRole === 'veto'
     }
   },
   actions: {
     setAuthToken ({ commit }, token) {
       commit('setAuthToken', token)
     },
-    setAuthProfile ({ commit }, profile) {
-      commit('setAuthProfile', profile)
+    setAuthRole ({ commit }, role) {
+      commit('setAuthRole', role)
+    },
+    setAuthGroup ({ commit }, group) {
+      commit('setAuthGroup', group)
     }
   }
 })

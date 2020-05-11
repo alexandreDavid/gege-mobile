@@ -17,6 +17,7 @@ export default {
   },
   methods: {
     async onSave (form) {
+      form.group = this.$store.state.authGroup
       const doc = await db.collection('animals').add(form)
       this.$router.replace({ name: 'details', params: { id: doc.id } })
     }

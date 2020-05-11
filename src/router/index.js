@@ -40,25 +40,25 @@ const routes = [
     ]
   },
   {
-    path: '/:id',
+    path: '/details/:id',
     name: 'details',
     component: Details,
     props: true,
     children: [
       {
-        path: '/:id/informations',
+        path: '/details/:id/informations',
         name: 'details-informations'
       },
       {
-        path: '/:id/health',
+        path: '/details/:id/health',
         name: 'details-health'
       },
       {
-        path: '/:id/observations',
+        path: '/details/:id/observations',
         name: 'details-observations'
       },
       {
-        path: '/:id/edit',
+        path: '/details/:id/edit',
         name: 'details-edit'
       }
     ]

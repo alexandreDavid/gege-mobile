@@ -13,21 +13,9 @@
         </ion-item>
         <ion-item>
           <ion-icon name="paper-plane" slot="start"></ion-icon>
-          <ion-label>Outbox</ion-label>
+          <ion-label>Profile (prochainement)</ion-label>
         </ion-item>
-        <ion-item>
-          <ion-icon name="heart" slot="start"></ion-icon>
-          <ion-label>Favorites</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="archive" slot="start"></ion-icon>
-          <ion-label>Archived</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="trash" slot="start"></ion-icon>
-          <ion-label>Trash</ion-label>
-        </ion-item>
-        <ion-item button @click="$router.push('/login')">
+        <ion-item button @click="logout">
           <ion-icon name="log-out" slot="start" color="danger"></ion-icon>
           <ion-label color="danger">Se deconnecter</ion-label>
         </ion-item>
@@ -35,3 +23,13 @@
     </ion-content>
   </ion-menu>
 </template>
+
+<script>
+export default {
+  methods: {
+    logout () {
+      this.$router.push('/login')
+    }
+  }
+}
+</script>

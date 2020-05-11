@@ -22,7 +22,7 @@
 
 <script>
 import { mapActions } from 'vuex'
-import { auth } from '@/plugins/firebase'
+import { auth, db } from '@/plugins/firebase'
 
 export default {
   name: 'login',
@@ -32,20 +32,24 @@ export default {
       password: ''
     }
   },
-  created () {
+  async created () {
+    await auth.signOut()
     this.setAuthToken('')
   },
   methods: {
     ...mapActions([
       'setAuthToken',
-      'setAuthProfile'
+      'setAuthRole',
+      'setAuthGroup'
     ]),
     async login (email, password) {
       try {
-        const result = await auth.signInWithEmailAndPassword(email, password)
-        console.log(result)
+        const { user } = await auth.signInWithEmailAndPassword(email, password)
+        const snapshot = await db.collection('users').doc(user.uid).get()
+        const details = snapshot.data()
         this.setAuthToken(`OK: ${email}`)
-        this.setAuthProfile(email === 'soignant' ? email : 'veto')
+        this.setAuthRole(details.role)
+        this.setAuthGroup(details.group)
         this.$router.push('/')
       } catch (error) {
         // var errorCode = error.code

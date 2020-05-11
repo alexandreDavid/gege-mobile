@@ -55,7 +55,7 @@ export default {
     }
   },
   mounted () {
-    db.collection('animals').get().then((querySnapshot) => {
+    db.collection('animals').where('group', '==', this.$store.state.authGroup).get().then((querySnapshot) => {
       this.list = []
       querySnapshot.forEach((doc) => {
         this.list.push({ ...doc.data(), id: doc.id })
