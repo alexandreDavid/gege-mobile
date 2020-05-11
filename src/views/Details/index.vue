@@ -95,7 +95,13 @@ export default {
             },
             {
               text: 'Annuler',
-              role: 'cancel'
+              role: 'cancel',
+              handler: async () => {
+                this.loading = true
+                this.edit = false
+                await this.getDetails()
+                this.loading = false
+              }
             }
           ]
         })
