@@ -15,7 +15,7 @@
     "@ionic/pwa-elements": "^1.5.2",
     "@ionic/vue": "0.0.9",
     "core-js": "^3.6.4",
-    "firebase": "^7.14.2",
+    "firebase": "^7.14.3",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuefire": "^2.2.2",
