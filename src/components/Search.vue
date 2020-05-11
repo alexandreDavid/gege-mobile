@@ -11,7 +11,6 @@
         <ion-label>
           <h3>{{ entity.name }}</h3>
           <p>{{ entity.type }}</p>
-          <p>{{ entity.age > 1 ? `${entity.age} ans` : '1 an' }}</p>
         </ion-label>
       </ion-item>
     </ion-list>
