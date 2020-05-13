@@ -14,7 +14,7 @@
         <ion-button expand="full" color="primary" @click="login(email, password)" :disabled="!email || !password">Se connecter</ion-button>
       </div>
       <div margin-top>
-        <router-link to="/forgotten-password">Mot de passe oublier ?</router-link>
+        <ion-router-link href="/forgotten-password">Mot de passe oublier ?</ion-router-link>
       </div>
     </ion-content>
   </div>

@@ -86,8 +86,8 @@ const router = new IonicVueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && !store.getters.isAuthenticated) {
+router.beforeEach((to, _, next) => {
+  if (!['login', 'forgotten-password'].includes(to.name) && !store.getters.isAuthenticated) {
     next({ name: 'login' })
   } else {
     next()
