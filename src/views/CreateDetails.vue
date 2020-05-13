@@ -4,7 +4,7 @@
 
 <script>
 import EditDetails from '@/components/EditDetails'
-import { db } from '@/plugins/firebase'
+import { db, storage } from '@/plugins/firebase'
 
 export default {
   name: 'CreateDetails',
@@ -17,9 +17,25 @@ export default {
   },
   methods: {
     async onSave (form) {
+      const loading = await this.$ionic.loadingController
+        .create({
+          message: 'Sauvegarde en cours...'
+        })
+      loading.present()
+      const image = form.imageUrl
+      delete form.imageUrl
+
       form.group = this.$store.state.authGroup
       const doc = await db.collection('animals').add(form)
-      this.$router.replace({ name: 'details', params: { id: doc.id } })
+      const id = doc.id
+      if (image) {
+        const ref = storage.ref().child(`animals/${id}.jpg`)
+        const snapshot = await ref.putString(image, 'data_url')
+        const imageUrl = await snapshot.ref.getDownloadURL()
+        await doc.update({ imageUrl })
+      }
+      loading.dismiss()
+      this.$router.replace({ name: 'details', params: { id } })
     }
   }
 }

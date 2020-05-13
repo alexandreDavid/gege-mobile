@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { db } from '@/plugins/firebase'
+import { db, storage } from '@/plugins/firebase'
 
 import Informations from './Informations'
 import Health from './Health'
@@ -130,6 +130,11 @@ export default {
     },
     async save (form) {
       this.loading = true
+      if (form.imageUrl && form.imageUrl.startsWith('data:')) {
+        const ref = storage.ref().child(`animals/${this.id}.jpg`)
+        const snapshot = await ref.putString(form.imageUrl, 'data_url')
+        form.imageUrl = await snapshot.ref.getDownloadURL()
+      }
       await db.collection('animals').doc(this.id).update(form)
       this.edit = false
       await this.getDetails()

@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <ImageManager v-model="form.imageUrl" />
+        <ImageManager v-model="form.imageUrl" @input="changeImage" />
       </ion-item>
       <ion-item v-for="(field, key) in fields" :key="key">
         <ion-label position="floating">{{ field.label }}</ion-label>
@@ -87,6 +87,11 @@ export default {
   computed: {
     form () {
       return { ...this.details }
+    }
+  },
+  methods: {
+    changeImage (newImage) {
+      this.form.imageUrl = newImage
     }
   }
 }
