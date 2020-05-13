@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item>
-        <ion-img :src="details.imageUrl"></ion-img>
+        <ion-img v-if="details.imageUrl" :src="details.imageUrl"></ion-img>
       </ion-item>
       <ion-item v-for="(field, key) in fields" :key="key">
         <ion-label>

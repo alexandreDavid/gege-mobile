@@ -24,7 +24,7 @@
         </ion-segment-button>
       </ion-segment>
     </ion-header>
-    <ion-content v-if="!loading">
+    <ion-content>
       <Informations v-show="currentDisplay === 'informations' && !edit" :details="details" />
       <Health v-show="currentDisplay === 'health'" />
       <HealtherDoc v-show="currentDisplay === 'healther-doc'" />
@@ -54,12 +54,20 @@ export default {
       currentDisplay: 'informations',
       details: {},
       edit: false,
-      loading: true
+      loading: false
     }
   },
   async created () {
+    this.loading = await this.$ionic.loadingController
+      .create({
+        message: 'Veuillez patienter...'
+      })
+    this.loading.present()
     await this.getDetails()
-    this.loading = false
+    this.loading.dismiss()
+  },
+  watch: {
+    id: 'getDetails'
   },
   methods: {
     async getDetails () {
@@ -97,10 +105,10 @@ export default {
               text: 'Annuler',
               role: 'cancel',
               handler: async () => {
-                this.loading = true
+                this.loading.present()
                 this.edit = false
                 await this.getDetails()
-                this.loading = false
+                this.loading.dismiss()
               }
             }
           ]
@@ -129,7 +137,7 @@ export default {
         .then(a => a.present())
     },
     async save (form) {
-      this.loading = true
+      this.loading.present()
       if (form.imageUrl && form.imageUrl.startsWith('data:')) {
         const ref = storage.ref().child(`animals/${this.id}.jpg`)
         const snapshot = await ref.putString(form.imageUrl, 'data_url')
@@ -138,19 +146,22 @@ export default {
       await db.collection('animals').doc(this.id).update(form)
       this.edit = false
       await this.getDetails()
-      this.loading = false
+      this.loading.dismiss()
     },
     async delete () {
-      this.loading = true
+      this.loading.present()
       await db.collection('animals').doc(this.id).delete()
-      this.loading = false
+      this.loading.dismiss()
       this.$router.replace('/')
     },
     async duplicate () {
-      this.loading = true
+      this.loading.present()
+      if (this.details.imageUrl) {
+        delete this.details.imageUrl
+      }
       const snapshot = await db.collection('animals').add(this.details)
       this.$router.replace({ name: 'details', params: { id: snapshot.id } })
-      this.loading = false
+      this.loading.dismiss()
     }
   }
 }
