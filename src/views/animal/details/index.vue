@@ -25,24 +25,22 @@
       </ion-segment>
     </ion-header>
     <ion-content>
-      <Informations v-show="currentDisplay === 'informations' && !edit" :details="details" />
-      <Health v-show="currentDisplay === 'health'" />
+      <Informations v-show="currentDisplay === 'informations'" :form="details" />
+      <Health v-show="currentDisplay === 'health'" :form="details" />
       <HealtherDoc v-show="currentDisplay === 'healther-doc'" />
-      <EditDetails v-show="currentDisplay === 'informations' && edit" :details="details" @save="save" />
     </ion-content>
   </div>
 </template>
 
 <script>
-import { db, storage } from '@/plugins/firebase'
+import { db } from '@/plugins/firebase'
 
 import Informations from './Informations'
 import Health from './Health'
 import HealtherDoc from './HealtherDoc'
-import EditDetails from '@/components/EditDetails'
 
 export default {
-  components: { Informations, Health, HealtherDoc, EditDetails },
+  components: { Informations, Health, HealtherDoc },
   props: {
     id: {
       type: String,
@@ -53,7 +51,6 @@ export default {
     return {
       currentDisplay: 'informations',
       details: {},
-      edit: false,
       loading: false
     }
   },
@@ -92,7 +89,7 @@ export default {
             {
               text: 'Editer',
               handler: () => {
-                this.edit = true
+                this.$router.push({ name: 'edit', params: { id: this.id } })
               }
             },
             {
@@ -103,13 +100,7 @@ export default {
             },
             {
               text: 'Annuler',
-              role: 'cancel',
-              handler: async () => {
-                this.loading.present()
-                this.edit = false
-                await this.getDetails()
-                this.loading.dismiss()
-              }
+              role: 'cancel'
             }
           ]
         })
@@ -135,18 +126,6 @@ export default {
           ]
         })
         .then(a => a.present())
-    },
-    async save (form) {
-      this.loading.present()
-      if (form.imageUrl && form.imageUrl.startsWith('data:')) {
-        const ref = storage.ref().child(`animals/${this.id}.jpg`)
-        const snapshot = await ref.putString(form.imageUrl, 'data_url')
-        form.imageUrl = await snapshot.ref.getDownloadURL()
-      }
-      await db.collection('animals').doc(this.id).update(form)
-      this.edit = false
-      await this.getDetails()
-      this.loading.dismiss()
     },
     async delete () {
       this.loading.present()

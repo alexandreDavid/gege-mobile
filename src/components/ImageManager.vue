@@ -12,7 +12,7 @@
 import { Plugins, CameraSource, CameraResultType } from '@capacitor/core'
 const { Camera } = Plugins
 export default {
-  name: 'CameraPage',
+  name: 'ImageManager',
   props: {
     value: {
       type: String,
@@ -26,6 +26,11 @@ export default {
   },
   created () {
     this.image = this.value
+  },
+  watch: {
+    value (val) {
+      this.image = val
+    }
   },
   methods: {
     presentActionSheet () {

@@ -2,11 +2,12 @@ import Vue from 'vue'
 import { IonicVueRouter } from '@ionic/vue'
 import store from '@/store'
 
-import Home from '../views/Home'
-import Login from '../views/Login'
-import ForgottenPassword from '../views/ForgottenPassword'
-import About from '../views/About'
-import Details from '../views/Details'
+import Home from '@/views/Home'
+import Login from '@/views/Login'
+import ForgottenPassword from '@/views/ForgottenPassword'
+import About from '@/views/About'
+import Details from '@/views/animal/details'
+import Edit from '@/views/animal/edit'
 
 Vue.use(IonicVueRouter)
 
@@ -40,28 +41,30 @@ const routes = [
     ]
   },
   {
-    path: '/details/:id',
+    path: '/:id/details',
     name: 'details',
     component: Details,
     props: true,
     children: [
       {
-        path: '/details/:id/informations',
+        path: '/:id/details/informations',
         name: 'details-informations'
       },
       {
-        path: '/details/:id/health',
+        path: '/:id/details/health',
         name: 'details-health'
       },
       {
-        path: '/details/:id/observations',
+        path: '/:id/details/observations',
         name: 'details-observations'
-      },
-      {
-        path: '/details/:id/edit',
-        name: 'details-edit'
       }
     ]
+  },
+  {
+    path: '/:id/edit',
+    name: 'edit',
+    component: Edit,
+    props: true
   },
   {
     path: '/login',
