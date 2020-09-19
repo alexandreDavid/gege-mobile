@@ -13,7 +13,7 @@
         </ion-item>
         <ion-item>
           <ion-icon name="paper-plane" slot="start"></ion-icon>
-          <ion-label>Profile (prochainement)</ion-label>
+          <ion-label>Profil (prochainement)</ion-label>
         </ion-item>
         <ion-item button @click="logout">
           <ion-icon name="log-out" slot="start" color="danger"></ion-icon>
