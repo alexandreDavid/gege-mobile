@@ -1,7 +1,7 @@
 <template>
   <div class="ion-page">
     <ion-content class="ion-padding">
-      <h1>Bienvenu sur Gege</h1>
+      <h1>Bienvenu sur Anim'info</h1>
       <ion-item margin-top>
         <ion-label position="floating">E-mail</ion-label>
         <ion-input @ionInput="email = $event.target.value" type="email"></ion-input>
